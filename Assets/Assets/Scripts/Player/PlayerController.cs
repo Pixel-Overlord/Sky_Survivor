@@ -1,18 +1,45 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+[RequireComponent(typeof(Rigidbody))]
+public class PlaneController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [Header("Movement")]
+    [SerializeField] private float forwardSpeed = 20f;
+    [SerializeField] private float movementSpeed = 10f;
+
+    [Header("Rotation")]
+    [SerializeField] private float pitchSpeed = 60f;
+    [SerializeField] private float rollAngle = 30f;
+    [SerializeField] private float rollSpeed = 5f;
+
+    private Rigidbody rb;
+
+    private float verticalInput;
+    private float horizontalInput;
+
+    private void Awake()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        verticalInput = Input.GetAxis("Vertical");
+        horizontalInput = Input.GetAxis("Horizontal");
+    }
+
+    private void FixedUpdate()
+    {
+        move();
+    }
+
+    private void move()
+    {
+        Vector3 movement = new Vector3(
+        horizontalInput * movementSpeed,
+        verticalInput * movementSpeed,
+        forwardSpeed);
+
+        rb.velocity = movement;
     }
 }
