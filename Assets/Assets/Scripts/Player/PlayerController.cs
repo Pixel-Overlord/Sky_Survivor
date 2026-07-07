@@ -1,52 +1,45 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-/*
- * Script Name: PlayerController
- * 
- * What it does: 
- * - This script is responsible for controlling the player(ship) in the game.
- * - It handles player input, movement, and interactions with the game world.
- */
-public class PlayerController : MonoBehaviour
+[RequireComponent(typeof(Rigidbody))]
+public class PlaneController : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 20f;
-    [SerializeField] private float pitchSpeed = 60f;
-    [SerializeField] private float maxPitchAngle = 30f;
+    [Header("Movement")]
+    [SerializeField] private float forwardSpeed = 20f;
+    [SerializeField] private float movementSpeed = 10f;
 
-    private float currentPitch;
-    private float targetPitch;
+    [Header("Rotation")]
+    [SerializeField] private float pitchSpeed = 60f;
+    [SerializeField] private float rollAngle = 30f;
+    [SerializeField] private float rollSpeed = 5f;
+
+    private Rigidbody rb;
+
+    private float verticalInput;
+    private float horizontalInput;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     private void Update()
     {
-        handlePitch();
-        moveForward();
+        verticalInput = Input.GetAxis("Vertical");
+        horizontalInput = Input.GetAxis("Horizontal");
     }
 
-    private void handlePitch()
+    private void FixedUpdate()
     {
-        float input = Input.GetAxis("Vertical");
-
-        targetPitch = input * maxPitchAngle;
-
-        if (input != 0)
-        {
-            transform.Rotate(input * pitchSpeed * Time.deltaTime, 0f, 0f);
-        }
-        else
-        {
-            currentPitch = Mathf.Lerp(
-                currentPitch,
-                targetPitch,
-                pitchSpeed * Time.deltaTime);
-
-            transform.localRotation = Quaternion.Euler(currentPitch, 0f, 0f);
-        }
+        move();
     }
 
-    private void moveForward()
+    private void move()
     {
-        transform.position += transform.forward * moveSpeed * Time.deltaTime;
+        Vector3 movement = new Vector3(
+        horizontalInput * movementSpeed,
+        verticalInput * movementSpeed,
+        forwardSpeed);
+
+        rb.velocity = movement;
     }
 }
