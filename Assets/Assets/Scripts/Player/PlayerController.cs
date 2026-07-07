@@ -7,11 +7,6 @@ public class PlaneController : MonoBehaviour
     [SerializeField] private float forwardSpeed = 20f;
     [SerializeField] private float movementSpeed = 10f;
 
-    [Header("Rotation")]
-    [SerializeField] private float pitchSpeed = 60f;
-    [SerializeField] private float rollAngle = 30f;
-    [SerializeField] private float rollSpeed = 5f;
-
     private Rigidbody rb;
 
     private float verticalInput;
