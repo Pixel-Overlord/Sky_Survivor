@@ -35,7 +35,10 @@ public class ScoreController : MonoBehaviour
 
     private void FixedUpdate()
     {
-       scoreUpdate();
+        if (GameManager.Instance.IsGameOver)
+            return;
+
+        scoreUpdate();
     }
 
     private void scoreUpdate()
