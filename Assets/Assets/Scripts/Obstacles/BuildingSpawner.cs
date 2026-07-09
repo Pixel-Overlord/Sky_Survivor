@@ -55,13 +55,13 @@ public class BuildingSpawner : MonoBehaviour
 
         building.transform.position = new Vector3(
             Random.Range(minX, maxX),
-            height * 0.5f,
+            0f,
             nextSpawnZ);
 
         building.transform.localScale = new Vector3(
-            Random.Range(2f, 8f),
+            Random.Range(0.6f, 1.67f),
             height,
-            Random.Range(2f, 8f));
+            Random.Range(0.6f, 1.67f));
 
         activeBuildings.Add(building);
 

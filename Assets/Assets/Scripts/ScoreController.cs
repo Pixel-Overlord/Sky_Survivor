@@ -11,8 +11,6 @@ public class ScoreController : MonoBehaviour
 
     private bool canPlay;
 
-   
-
     private int score = 0;
 
     // Start is called before the first frame update
@@ -23,7 +21,7 @@ public class ScoreController : MonoBehaviour
 
     private void Update()
     {
-        if (planeController.planeGetter.position.y > buildingSpawner.maxHeight)
+        if (planeController.planeGetter.position.y > 50f)
         {
             canPlay = false;
         }
