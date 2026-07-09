@@ -198,7 +198,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 65f2f1b4666a5734a87fe8e6ef899f06, type: 2}
+  - {fileID: 2100000, guid: d6e0a8a3f39945049a2bbe0629d026b5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -752,7 +752,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 65f2f1b4666a5734a87fe8e6ef899f06, type: 2}
+  - {fileID: 2100000, guid: d6e0a8a3f39945049a2bbe0629d026b5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -832,8 +832,8 @@ Camera:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.083595514, g: 0.34311962, b: 0.7509433, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.05824849, g: 0.075190425, b: 0.10188681, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1125,7 +1125,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 12800000, guid: c1a12107163107541a1c983f0834c424, type: 3}
     m_FontSize: 60
-    m_FontStyle: 1
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 6
     m_MaxSize: 60
@@ -1784,13 +1784,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingPool: {fileID: 1706008827}
   player: {fileID: 1309806207}
-  initialBuildings: 60
+  initialBuildings: 80
   spawnAheadDistance: 300
   despawnDistance: 20
-  minX: -80
-  maxX: 80
-  minHeight: 10
-  maxHeight: 50
+  minX: -100
+  maxX: 100
+  minHeight: 0.6
+  maxHeight: 1.67
 --- !u!114 &1706008827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1804,7 +1804,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingPrefab: {fileID: 2069534567211753462, guid: cb4fa62eaae919241984a27a9df3f02e, type: 3}
-  poolSize: 80
+  poolSize: 100
 --- !u!4 &1706008828
 Transform:
   m_ObjectHideFlags: 0
@@ -1814,7 +1814,7 @@ Transform:
   m_GameObject: {fileID: 1706008825}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -37.6, y: 15.8, z: -9.82}
+  m_LocalPosition: {x: -37.6, y: 0, z: -9.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1975,7 +1975,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 65f2f1b4666a5734a87fe8e6ef899f06, type: 2}
+  - {fileID: 2100000, guid: d6e0a8a3f39945049a2bbe0629d026b5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2031,7 +2031,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.5, y: 0, z: 0}
-  m_LocalScale: {x: 1.7, y: 0.032, z: 1.6}
+  m_LocalScale: {x: 10, y: 0.032, z: 1.6}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 756316799}
