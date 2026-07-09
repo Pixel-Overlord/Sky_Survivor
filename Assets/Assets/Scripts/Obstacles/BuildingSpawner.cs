@@ -14,8 +14,8 @@ public class BuildingSpawner : MonoBehaviour
     [Header("Building")]
     [SerializeField] private float minX = -40f;
     [SerializeField] private float maxX = 40f;
-    [SerializeField] private float minHeight = 5f;
-    [SerializeField] private float maxHeight = 25f;
+    public float minHeight = 5f;
+    public float maxHeight = 25f;
 
     private readonly List<GameObject> activeBuildings = new();
 
