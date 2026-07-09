@@ -11,11 +11,7 @@ public class PlaneController : MonoBehaviour
 
     private Rigidbody rb;
 
-    public Rigidbody planeGetter
-    {
-        get { return rb; }
-        set {}
-    }
+    public Rigidbody planeGetter => rb;
 
     private float verticalInput;
     private float horizontalInput;
