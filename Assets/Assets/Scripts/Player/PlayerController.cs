@@ -11,11 +11,7 @@ public class PlaneController : MonoBehaviour
 
     private Rigidbody rb;
 
-    public Rigidbody planeGetter
-    {
-        get { return rb; }
-        set {}
-    }
+    public Rigidbody planeGetter => rb;
 
     private float verticalInput;
     private float horizontalInput;
@@ -33,6 +29,9 @@ public class PlaneController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (GameManager.Instance.IsGameOver)
+            return;
+
         move();
     }
 
@@ -45,4 +44,17 @@ public class PlaneController : MonoBehaviour
 
         rb.velocity = movement;
     }   
+
+    /*
+     * If there is any collision between player and the Obstacle, Game Manager sets the Game as over and log a message.
+     */
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Hit: " + collision.gameObject.name);
+
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            GameManager.Instance.GameOver();
+        }
+    }
 }
