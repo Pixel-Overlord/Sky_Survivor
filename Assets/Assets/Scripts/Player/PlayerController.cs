@@ -7,7 +7,15 @@ public class PlaneController : MonoBehaviour
     [SerializeField] private float forwardSpeed = 20f;
     [SerializeField] private float movementSpeed = 10f;
 
+    [SerializeField] private Transform ground;
+
     private Rigidbody rb;
+
+    public Rigidbody planeGetter
+    {
+        get { return rb; }
+        set {}
+    }
 
     private float verticalInput;
     private float horizontalInput;
@@ -36,5 +44,5 @@ public class PlaneController : MonoBehaviour
         forwardSpeed);
 
         rb.velocity = movement;
-    }
+    }   
 }
