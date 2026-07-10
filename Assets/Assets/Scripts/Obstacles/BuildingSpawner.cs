@@ -48,16 +48,31 @@ public class BuildingSpawner : MonoBehaviour
     {
         nextSpawnZ = player.position.z + 20f;
 
-        for (int i = 0; i < initialRows; i++)
-            SpawnRow();
+        while (nextSpawnZ < player.position.z + spawnAheadDistance)
+            SpawnBlock();
     }
 
     private void Update()
     {
         while (nextSpawnZ < player.position.z + spawnAheadDistance)
-            SpawnRow();
+            SpawnBlock();
 
         CheckBuildingsBehindPlayer();
+    }
+
+    private void SpawnBlock()
+    {
+        int rows = Random.Range(minRowsPerBlock, maxRowsPerBlock + 1);
+
+        for (int i = 0; i < rows; i++)
+        {
+            SpawnRow();
+
+            if (i < rows - 1)
+                nextSpawnZ += rowSpacing;
+        }
+
+        nextSpawnZ += blockSpacing;
     }
 
     private void SpawnRow()
@@ -98,8 +113,6 @@ public class BuildingSpawner : MonoBehaviour
             if (occupied[lane])
                 SpawnBuilding(lane, laneWidth, ref largestLength);
         }
-
-        nextSpawnZ += largestLength + Random.Range(10f, 18f);
     }
 
     private void SpawnBuilding(int lane, float laneWidth, ref float largestLength)
