@@ -23,6 +23,9 @@ public class PlaneController : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.IsGameOver)
+            return;
+
         verticalInput = Input.GetAxis("Vertical");
         horizontalInput = Input.GetAxis("Horizontal");
     }
