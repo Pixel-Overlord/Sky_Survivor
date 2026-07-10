@@ -21,6 +21,9 @@ public class ScoreController : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.IsGameOver)
+            return;
+
         if (planeController.planeGetter.position.y > 50f)
         {
             canPlay = false;
