@@ -1,7 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>Owns the reusable building instances used by the streamed city.</summary>
 public class BuildingPool : MonoBehaviour
 {
     [SerializeField]
@@ -10,6 +10,8 @@ public class BuildingPool : MonoBehaviour
     [SerializeField]
     private int poolSize = 50;
 
+    [SerializeField] private bool expandWhenEmpty = true;
+
     private Queue<GameObject> pool = new Queue<GameObject>();
 
     private void Awake()
@@ -17,17 +19,22 @@ public class BuildingPool : MonoBehaviour
         // Initialize pool
         for (int i = 0; i < poolSize; i++)
         {
-            GameObject building = Instantiate(buildingPrefab, transform);
-            building.SetActive(false);
-            pool.Enqueue(building);
+            pool.Enqueue(CreateBuilding());
         }
     }
 
-    // gets an object from queue and sets its active state true.
-    public GameObject getBuilding()
+    /// <summary>Returns an active building instance, expanding the pool when the configured policy permits it.</summary>
+    public GameObject GetBuilding()
     {
         if (pool.Count == 0)
-            return null;
+        {
+            if (!expandWhenEmpty)
+                return null;
+
+            GameObject newBuilding = CreateBuilding();
+            newBuilding.SetActive(true);
+            return newBuilding;
+        }
 
         GameObject building = pool.Dequeue();
         building.SetActive(true);
@@ -35,9 +42,17 @@ public class BuildingPool : MonoBehaviour
         return building;
     }
 
-    public void returnBuildingToPool(GameObject building)
+    /// <summary>Deactivates a building and makes it available for another city chunk.</summary>
+    public void ReturnBuildingToPool(GameObject building)
     {
         building.SetActive(false);
         pool.Enqueue(building);
+    }
+
+    private GameObject CreateBuilding()
+    {
+        GameObject building = Instantiate(buildingPrefab, transform);
+        building.SetActive(false);
+        return building;
     }
 }

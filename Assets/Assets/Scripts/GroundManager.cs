@@ -1,40 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
+/// <summary>
+/// Keeps the visual ground centered beneath a freely turning plane. The ground is visual support for the
+/// streamed city, so it follows on both horizontal axes instead of assuming forward movement on Z only.
+/// </summary>
 public class GroundManager : MonoBehaviour
 {
     [SerializeField] private Transform player;
-    [SerializeField] private Transform[] ground;
-    [SerializeField] private float groundLength = 1000f;
 
-    private void Update()
+    private void LateUpdate()
     {
-        for (int i = 0; i < ground.Length; i++)
-        {
-            if (player.position.z - ground[i].position.z > groundLength)
-            {
-                MoveGroundToFront(ground[i]);
-            }
-        }
-    }
-
-    private void MoveGroundToFront(Transform tile)
-    {
-        float endLimitOfGround = ground[0].position.z;
-
-        for (int i = 1; i < ground.Length; i++)
-        {
-            if (ground[i].position.z > endLimitOfGround)
-            {
-                endLimitOfGround = ground[i].position.z;
-            }
-        }
-
-        tile.position = new Vector3(
-            tile.position.x,
-            tile.position.y,
-            endLimitOfGround + groundLength);
+        Vector3 position = transform.position;
+        position.x = player.position.x;
+        position.z = player.position.z;
+        transform.position = position;
     }
 }

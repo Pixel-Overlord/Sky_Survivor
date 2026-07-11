@@ -1,20 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>Advances the score only while the player is actively flying through the city.</summary>
 public class ScoreController : MonoBehaviour
 {
     [SerializeField] private PlaneController planeController;
-    [SerializeField] private BuildingSpawner buildingSpawner;
     [SerializeField] private Text scoreText;
 
-    private bool canPlay;
+    private bool isPlaneMoving;
+    private int score;
 
-    private int score = 0;
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         score = 0;
     }
@@ -24,14 +20,7 @@ public class ScoreController : MonoBehaviour
         if (GameManager.Instance.IsGameOver)
             return;
 
-        if (planeController.planeGetter.position.y > 50f)
-        {
-            canPlay = false;
-        }
-        else
-        {
-            canPlay = true;
-        }
+        isPlaneMoving = planeController.PlaneBody.velocity.sqrMagnitude > 0.01f;
     }
 
     private void FixedUpdate()
@@ -39,19 +28,13 @@ public class ScoreController : MonoBehaviour
         if (GameManager.Instance.IsGameOver)
             return;
 
-        scoreUpdate();
+        UpdateScore();
     }
 
-    private void scoreUpdate()
+    private void UpdateScore()
     {
-        if (canPlay)
-        {
+        if (isPlaneMoving)
             score += 1;
-        }
-        else
-        {
-            score -= 1;
-        }
 
         scoreText.text = "Score : " + score;
     }
