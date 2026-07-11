@@ -1122,8 +1122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forwardSpeed: 60
-  movementSpeed: 50
-  ground: {fileID: 1852983738}
+  turnSpeedDegrees: 90
+  maximumTurnAngle: 90
 --- !u!4 &1006774376
 Transform:
   m_ObjectHideFlags: 0
@@ -1202,7 +1202,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planeController: {fileID: 1006774374}
-  buildingSpawner: {fileID: 1706008826}
   scoreText: {fileID: 1236414256}
 --- !u!1 &1137984941
 GameObject:
@@ -1984,11 +1983,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingPool: {fileID: 1706008827}
   player: {fileID: 1006774376}
-  initialRows: 15
-  spawnAheadDistance: 300
-  despawnDistance: 20
-  groundWidth: 300
-  laneCount: 6
+  chunkSize: 120
+  activeChunkRadius: 2
+  citySeed: 7907
+  startingClearRadius: 28
+  minimumLotsPerAxis: 2
+  maximumLotsPerAxis: 3
+  lotGap: 8
+  openLotChance: 0.18
+  minimumLotCoverage: 0.65
+  maximumLotCoverage: 0.9
   presets:
   - width: 12
     length: 12
@@ -2002,10 +2006,6 @@ MonoBehaviour:
   - width: 24
     length: 16
     height: 30
-  minRowsPerBlock: 2
-  maxRowsPerBlock: 4
-  rowSpacing: 12
-  blockSpacing: 30
 --- !u!114 &1706008827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2020,6 +2020,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingPrefab: {fileID: 2069534567211753462, guid: 98a72851491bbf343bcf66e236bf778b, type: 3}
   poolSize: 100
+  expandWhenEmpty: 1
 --- !u!4 &1706008828
 Transform:
   m_ObjectHideFlags: 0
@@ -2175,10 +2176,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1006774376}
-  ground:
-  - {fileID: 756316799}
-  - {fileID: 857748728}
-  groundLength: 100
 --- !u!1 &1963123166
 GameObject:
   m_ObjectHideFlags: 0
