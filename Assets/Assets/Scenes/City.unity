@@ -1032,8 +1032,8 @@ Camera:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.05824849, g: 0.075190425, b: 0.10188681, a: 0}
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.9245283, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1986,7 +1986,7 @@ MonoBehaviour:
   player: {fileID: 1006774376}
   initialBuildings: 80
   spawnAheadDistance: 300
-  despawnDistance: 20
+  despawnDistance: 50
   minX: -120
   maxX: 120
   minHeight: 25
