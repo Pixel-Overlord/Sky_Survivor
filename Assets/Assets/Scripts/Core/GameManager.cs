@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,7 @@ public class GameManager : MonoBehaviour
     private bool isPaused;
 
     [SerializeField] private Animator gameOverAnimaion;
+    [SerializeField] private Animator playPauseAnimaion;
     [SerializeField] private GameObject restartButton;
 
     private void Awake()
@@ -45,14 +47,30 @@ public class GameManager : MonoBehaviour
         Debug.Log("GAME OVER");
 
         restartButton.SetActive(true);
-        Time.timeScale = 0f;
     }
 
     public void TogglePause()
     {
         isPaused = !isPaused;
 
-        Time.timeScale = isPaused ? 0f : 1f;
+        //Time.timeScale = isPaused ? 0f : 1f;
+
+        if (isPaused == true)
+        {
+            playPauseAnimaion.Play("Pause");
+            StartCoroutine(GameOverAction());
+        }
+        else
+        {
+            playPauseAnimaion.Play("Play");
+            Time.timeScale = 1f;
+        }        
+    }
+
+    private IEnumerator GameOverAction()
+    {
+        yield return new WaitForSeconds(0.25f); // animation length
+        Time.timeScale = 0f;
     }
 
     public void RestartGame()
