@@ -82,28 +82,22 @@ public class BuildingSpawner : MonoBehaviour
         // Randomly decide how many buildings in this row
         bool[] occupied = new bool[laneCount];
 
-        int buildingsInRow = Random.Range(2, laneCount);
+        int buildingsInRow = Random.Range(2, laneCount - 1);
 
         int spawned = 0;
 
-        while (spawned < buildingsInRow)
+        List<int> availableLanes = new();
+
+        for (int i = 0; i < laneCount; i++)
+            availableLanes.Add(i);
+
+        for (int i = 0; i < buildingsInRow && availableLanes.Count > 0; i++)
         {
-            int lane = Random.Range(0, laneCount);
-
-            if (occupied[lane])
-                continue;
-
-            // Prevent 3 consecutive buildings
-            bool left1 = lane > 0 && occupied[lane - 1];
-            bool left2 = lane > 1 && occupied[lane - 2];
-            bool right1 = lane < laneCount - 1 && occupied[lane + 1];
-            bool right2 = lane < laneCount - 2 && occupied[lane + 2];
-
-            if ((left1 && left2) || (right1 && right2))
-                continue;
+            int randomIndex = Random.Range(0, availableLanes.Count);
+            int lane = availableLanes[randomIndex];
 
             occupied[lane] = true;
-            spawned++;
+            availableLanes.RemoveAt(randomIndex);
         }
 
         float largestLength = 0f;
