@@ -885,8 +885,8 @@ Transform:
   m_GameObject: {fileID: 756316795}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.5, y: 0, z: 350}
-  m_LocalScale: {x: 10, y: 1, z: 100}
+  m_LocalPosition: {x: 3.5, y: 0, z: 1000}
+  m_LocalScale: {x: 10, y: 1, z: 1000}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1852983738}
@@ -919,8 +919,8 @@ Transform:
   m_GameObject: {fileID: 857748727}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.5, y: 0, z: 1363}
-  m_LocalScale: {x: 10, y: 1, z: 100}
+  m_LocalPosition: {x: 3.5, y: 0, z: 2000}
+  m_LocalScale: {x: 10, y: 1, z: 1000}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1852983738}
@@ -1122,8 +1122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forwardSpeed: 60
-  turnSpeedDegrees: 90
-  maximumTurnAngle: 90
+  movementSpeed: 50
+  ground: {fileID: 1852983738}
 --- !u!4 &1006774376
 Transform:
   m_ObjectHideFlags: 0
@@ -1202,6 +1202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planeController: {fileID: 1006774374}
+  buildingSpawner: {fileID: 1706008826}
   scoreText: {fileID: 1236414256}
 --- !u!1 &1137984941
 GameObject:
@@ -1964,7 +1965,7 @@ GameObject:
   - component: {fileID: 1706008829}
   m_Layer: 0
   m_Name: Obstacles
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1983,29 +1984,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingPool: {fileID: 1706008827}
   player: {fileID: 1006774376}
-  chunkSize: 120
-  activeChunkRadius: 2
-  citySeed: 7907
-  startingClearRadius: 28
-  minimumLotsPerAxis: 2
-  maximumLotsPerAxis: 3
-  lotGap: 8
-  openLotChance: 0.18
-  minimumLotCoverage: 0.65
-  maximumLotCoverage: 0.9
-  presets:
-  - width: 12
-    length: 12
-    height: 20
-  - width: 18
-    length: 18
-    height: 40
-  - width: 10
-    length: 10
-    height: 80
-  - width: 24
-    length: 16
-    height: 30
+  initialBuildings: 80
+  spawnAheadDistance: 300
+  despawnDistance: 20
+  minX: -120
+  maxX: 120
+  minHeight: 25
+  maxHeight: 70
 --- !u!114 &1706008827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2020,7 +2005,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingPrefab: {fileID: 2069534567211753462, guid: 98a72851491bbf343bcf66e236bf778b, type: 3}
   poolSize: 100
-  expandWhenEmpty: 1
 --- !u!4 &1706008828
 Transform:
   m_ObjectHideFlags: 0
@@ -2176,6 +2160,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1006774376}
+  ground:
+  - {fileID: 756316799}
+  - {fileID: 857748728}
+  groundLength: 1000
 --- !u!1 &1963123166
 GameObject:
   m_ObjectHideFlags: 0
