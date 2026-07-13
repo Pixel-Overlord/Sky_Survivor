@@ -40,6 +40,15 @@ public class PlaneController : MonoBehaviour
 
     private void move()
     {
+        if (horizontalInput < 0)    // Player has pressed A
+        {
+            rb.GetComponent<Animator>().Play("Tilt Left");
+        }
+        else if (horizontalInput > 0)
+        {
+            rb.GetComponent<Animator>().Play("Tilt Right");
+        }
+
         Vector3 movement = new Vector3(
         horizontalInput * movementSpeed,
         verticalInput * movementSpeed,

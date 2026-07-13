@@ -66,7 +66,7 @@ public class BuildingSpawner : MonoBehaviour
 
         activeBuildings.Add(building);
 
-        nextSpawnZ += Random.Range(5f, 7f);
+        nextSpawnZ += Random.Range(3f, 5f);
     }
 
     private void CheckBuildingsBehindPlayer()
